@@ -6,10 +6,12 @@ CheerLights channel then changes the LEDs to that color.
 
 ## CheerLights
 See the following for more info on CheerLights
+
 http://cheerlights.com/
 
 ## ThingSpeak
 CheerLights uses ThingSpeak to scan for @cheerlights and the color.
+
 https://thingspeak.com/channels/1417
 http://api.thingspeak.com/channels/1417/field/2/last.txt
 
@@ -17,11 +19,13 @@ The last value is the RGB color in hexadecimal.
 
 ## ESP8266 Arduino IDE
 See the following for more info on the ESP8266 Arduino IDE
+
 https://github.com/esp8266/Arduino
 http://www.esp8266.com/
 
 ## NeoPixelBus ws281x/NeoPixel driver
 See the following for ESP8266 ws281x/NeoPixel driver.
+
 https://github.com/Makuna/NeoPixelBus
 
 ## Hardware used for testing
