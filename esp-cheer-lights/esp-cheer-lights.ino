@@ -42,6 +42,10 @@ const char password[] = "yyyyyyyyyyyyy";
 
 const char host[] = "api.thingspeak.com";
 
+// 0 = All LEDs change to the new color
+// 1 = New color updates 1 LED, shift to next LED.
+const int DisplayMode = 1;
+
 void setup()
 {
     Serial.begin(115200);
@@ -70,6 +74,13 @@ void setup()
 }
 
 static unsigned long LastColor = 0;
+
+static int CurrentLED = 0;
+
+static int NextLED(void)
+{
+    return CurrentLED++ % NUM_LEDS;
+}
 
 void loop()
 {
@@ -101,15 +112,27 @@ void loop()
             int r, g, b;
             Serial.println(line);
             color = strtoul(line.c_str()+1, NULL, 16);
-            // Update LEDs only when color changes
-            if (color != LastColor) {
-                LastColor = color;
-                Serial.println(color, HEX);
-                r = (color & 0xFF0000) >> 16;
-                g = (color & 0x00FF00) >>  8;
-                b = (color & 0x0000FF);
-                strip.ClearTo(r, g, b);
-                strip.Show();
+            switch (DisplayMode) {
+                default:
+                case 0: // Update all LEDs to the new color
+                    // Update LEDs only when color changes
+                    if (color != LastColor) {
+                        LastColor = color;
+                        Serial.println(color, HEX);
+                        r = (color & 0xFF0000) >> 16;
+                        g = (color & 0x00FF00) >>  8;
+                        b = (color & 0x0000FF);
+                        strip.ClearTo(r, g, b);
+                        strip.Show();
+                    }
+                    break;
+                case 1: // Update 1 LED then shift to next LED
+                    r = (color & 0xFF0000) >> 16;
+                    g = (color & 0x00FF00) >>  8;
+                    b = (color & 0x0000FF);
+                    strip.SetPixelColor(NextLED(), r, g, b);
+                    strip.Show();
+                    break;
             }
         }
     }
