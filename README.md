@@ -20,8 +20,12 @@ The last value is the RGB color in hexadecimal.
 ## ESP8266 Arduino IDE
 See the following for more info on the ESP8266 Arduino IDE
 
-https://github.com/esp8266/Arduino
-http://www.esp8266.com/
+* https://github.com/esp8266/Arduino
+* http://www.esp8266.com/
+
+NOTE: This program requires the ESP8266 staging version dated Sep 30, 2015 or newer. In the IDE boards manager, the version string is currently "1.6.5-1160-gef26c5f".
+
+* https://github.com/esp8266/arduino#staging-version-
 
 ## NeoPixelBus ws281x/NeoPixel driver
 See the following for ESP8266 ws281x/NeoPixel driver.
